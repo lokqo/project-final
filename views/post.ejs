@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= post.title %></title>
-    <link rel="stylesheet" type="text/css" href="/assets/style.css" />
-  </head>
-  <body>
-    <h1><%= post.title %></h1>
-    <p><%= post.body %></p>
-    <p>Author: <%= post.author %></p>
-    <p>Date: <%= post.created_at.toDateString() %></p>
-    <a href="/">Back to Posts</a>
-  </body>
+<head>
+  <title><%= post.title %></title>
+  <link rel="stylesheet" type="text/css" href="/assets/style.css" />
+</head>
+<body>
+  <h1><%= post.title %></h1>
+  <p><%= post.body %></p>
+  <p>Author: <%= post.author %></p>
+  <p>Date: <%= post.created_at.toDateString() %></p>
+
+  <h2>Comments</h2>
+  <% if (post.comments && post.comments.length > 0) { %>
+    <% for (let i = 0; i < post.comments.length; i++) { %>
+      <div class="comment">
+        <p>Author: <%= post.comments[i].author %></p>
+        <p><%= post.comments[i].content %></p>
+      </div>
+    <% } %>
+  <% } else { %>
+    <p>No comments available.</p>
+  <% } %>
+
+  <form method="POST" action="/comment">
+    <input type="hidden" name="postId" value="<%= post.id %>">
+    <input type="text" name="author" placeholder="Author">
+    <textarea name="content" placeholder="Comment"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+
+  <a href="/">Back to Main Page</a> <!-- Add this line for the button -->
+
+</body>
 </html>

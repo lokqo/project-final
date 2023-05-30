@@ -56,16 +56,6 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/post/:id', (req, res) => {
-  const postId = req.params.id;
-  const sql = 'SELECT * FROM posts WHERE id = ?';
-
-  db.query(sql, [postId], (err, result) => {
-    if (err) throw err;
-
-    res.render('post', { post: result[0] });
-  });
-});
 
 
 // Register function
@@ -89,6 +79,10 @@ app.post('/register', async (req, res) => {
   });
 });
 
+
+app.get('/login', (req, res) => {
+  res.render('login', { errorMessage: null });
+});
 
 
 // login function
@@ -150,7 +144,41 @@ app.get("/logout", function (req, res) {
   });
 });
 
+//comments code
+app.get('/post/:id', (req, res) => {
+  const postId = req.params.id;
+  const postSql = 'SELECT * FROM posts WHERE id = ?';
+  const commentsSql = 'SELECT * FROM comments WHERE post_id = ?';
 
+  db.query(postSql, [postId], (err, postResult) => {
+    if (err) throw err;
+
+    const post = postResult[0];
+
+    db.query(commentsSql, [postId], (err, commentsResult) => {
+      if (err) throw err;
+
+      const comments = commentsResult;
+
+      post.comments = comments; // Add comments to the post object
+
+      res.render('post', { post: post }); // Pass the post object to the template
+    });
+  });
+});
+
+
+
+app.post('/comment', (req, res) => {
+  const { postId, author, content } = req.body;
+  const sql = 'INSERT INTO comments (post_id, author, content) VALUES (?, ?, ?)';
+
+  db.query(sql, [postId, author, content], (err, result) => {
+    if (err) throw err;
+
+    res.redirect(`/post/${postId}`);
+  });
+});
 
 
 

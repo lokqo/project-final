@@ -203,4 +203,21 @@ form button[type="submit"]:hover {
   text-decoration: underline;
   }
   
+  .comment {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .comment p {
+    margin: 0;
+  }
+  
+  .comment p:first-child {
+    font-weight: bold;
+  }
+  
+  .comment p:last-child {
+    margin-top: 10px;
+  }
   
