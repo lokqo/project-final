@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= post.title %></title>
+    <link rel="stylesheet" type="text/css" href="/assets/style.css" />
+  </head>
+  <body>
+    <h1><%= post.title %></h1>
+    <p><%= post.body %></p>
+    <p>Author: <%= post.author %></p>
+    <p>Date: <%= post.created_at.toDateString() %></p>
+    <a href="/">Back to Posts</a>
+  </body>
+</html>

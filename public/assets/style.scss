@@ -1,0 +1,206 @@
+/* Apply some basic styles to the page */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin: 20px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+a:hover {
+  color: #666;
+}
+
+button {
+  background-color: #007AFF;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0062cc;
+}
+
+
+/* Set some global styles for the page */
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the header */
+.header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+/* Style the content area */
+.content {
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 20px;
+}
+
+/* Style the form */
+form {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+form input[type="text"],
+form input[type="password"] {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+}
+
+form button[type="submit"] {
+  background-color: #333;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+form button[type="submit"]:hover {
+  background-color: #555;
+}
+
+
+.register-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries */
+
+/* For screens smaller than 600px */
+@media (max-width: 600px) {
+  .header {
+    font-size: 18px;
+  }
+
+  .content {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  form input[type="text"],
+  form input[type="password"],
+  form textarea {
+    width: 100%;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+  }
+}
+
+/* For screens larger than 1200px */
+@media (min-width: 1200px) {
+  .content {
+    max-width: 800px;
+  }
+}
+
+/* For screens between 600px and 1200px */
+@media (min-width: 600px) and (max-width: 1200px) {
+  .content {
+    max-width: 700px;
+
+   }
+  }
+
+
+  /* For screens with a minimum height of 800px */
+@media (min-height: 800px) {
+  body {
+  background-color: #f0f0f0;
+  }
+  }
+  
+  /* Style the post */
+  .post {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+  }
+  
+  .post h1 {
+  font-size: 24px;
+  margin-top: 0;
+  }
+  
+  .post p {
+  margin-bottom: 10px;
+  }
+  
+  .post a {
+  text-decoration: none;
+  color: #007bff;
+  }
+  
+  .post a:hover {
+  text-decoration: underline;
+  }
+  
+  

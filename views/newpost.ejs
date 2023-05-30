@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New Post</title>
+    <link rel="stylesheet" type="text/css" href="/assets/style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <h1>New Post</h1>
+    </div>
+    <div class="content">
+      <form method="post" action="/newpost" class="form">
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="body">Body:</label>
+          <textarea name="body" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="author">Author:</label>
+          <input type="text" name="author" required>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+      <div class="back-link">
+        <a href="/">Back to Posts</a>
+      </div>
+    </div>
+  </body>
+</html>
+
