@@ -3,6 +3,7 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
+const multer = require('multer');
 
 const app = express();
 const port = 3000;
@@ -30,6 +31,17 @@ app.use(session({
   saveUninitialized: false
 }));
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/uploads');
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, file.fieldname + '-' + uniqueSuffix);
+  }
+});
+
+const upload = multer({ storage });
 
 app.get('/', (req, res) => {
   const sql = 'SELECT * FROM posts ORDER BY created_at DESC';
@@ -79,7 +91,6 @@ app.post('/register', async (req, res) => {
   });
 });
 
-
 app.get('/login', (req, res) => {
   res.render('login', { errorMessage: null });
 });
@@ -117,16 +128,22 @@ app.post('/login', (req, res) => {
   });
 });
 
-
+//NEW POSTS
 app.get('/newpost', (req, res) => {
   res.render('newpost');
 });
 
-app.post('/newpost', (req, res) => {
+app.post('/newpost', upload.single('image'), (req, res) => {
   const { title, body, author } = req.body;
-  const sql = 'INSERT INTO posts (title, body, author) VALUES (?, ?, ?)';
+  const imageFilename = req.file ? req.file.filename : null; // Get the uploaded image filename
 
-  db.query(sql, [title, body, author], (err, result) => {
+  let imageUrl = null;
+  if (req.file) {
+    imageUrl = '/uploads/' + req.file.filename;
+  }
+
+  const sql = 'INSERT INTO posts (title, body, author, image_url) VALUES (?, ?, ?, ?)';
+  db.query(sql, [title, body, author, imageFilename], (err, result) => {
     if (err) throw err;
 
     res.redirect('/');
@@ -134,6 +151,7 @@ app.post('/newpost', (req, res) => {
 });
 
 
+//LOGOUT
 app.get("/logout", function (req, res) {
   req.session.destroy(function (err) {
     if (err) {
@@ -179,9 +197,6 @@ app.post('/comment', (req, res) => {
     res.redirect(`/post/${postId}`);
   });
 });
-
-
-
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${3000}`);

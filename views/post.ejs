@@ -10,6 +10,10 @@
   <p>Author: <%= post.author %></p>
   <p>Date: <%= post.created_at.toDateString() %></p>
 
+  <% if (post.image_url) { %>
+    <img src="/uploads/<%= post.image_url %>" alt="Post Image" width="200">
+  <% } %>
+
   <h2>Comments</h2>
   <% if (post.comments && post.comments.length > 0) { %>
     <% for (let i = 0; i < post.comments.length; i++) { %>
@@ -29,7 +33,7 @@
     <button type="submit">Submit</button>
   </form>
 
-  <a href="/">Back to Main Page</a> <!-- Add this line for the button -->
+  <a href="/">Back to Main Page</a> 
 
 </body>
 </html>
